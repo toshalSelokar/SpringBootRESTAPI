@@ -1,0 +1,32 @@
+package com.example.SpringBootRESTAPI.actuator;
+
+import org.springframework.boot.actuate.health.Health;
+import org.springframework.boot.actuate.health.HealthIndicator;
+import org.springframework.stereotype.Component;
+
+@Component
+public class CustomHealthIndicator implements HealthIndicator {
+
+    @Override
+    public Health health() {
+        boolean isHealthy = checkIfSystemIsHealthy();
+        
+        if (isHealthy) {
+            return Health.up()
+                    .withDetail("customKey", "Everything is working fine!")
+                    .withDetail("description", "Custom health indicator for demonstration")
+                    .build();
+        } else {
+            return Health.down()
+                    .withDetail("customKey", "Something went wrong!")
+                    .withDetail("description", "Custom health indicator showing DOWN status")
+                    .build();
+        }
+    }
+    
+    private boolean checkIfSystemIsHealthy() {
+        // Add your health check logic here
+        // For demonstration, we'll return true
+        return true;
+    }
+}
