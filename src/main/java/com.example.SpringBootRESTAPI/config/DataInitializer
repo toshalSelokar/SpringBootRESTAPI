@@ -1,0 +1,38 @@
+package com.example.SpringBootRESTAPI.config;
+
+import com.example.SpringBootRESTAPI.entity.AppUser;
+import com.example.SpringBootRESTAPI.entity.Product;
+import com.example.SpringBootRESTAPI.repository.AppUserRepository;
+import com.example.SpringBootRESTAPI.repository.ProductRepository;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+public class DataInitializer {
+    
+    @Bean
+    public CommandLineRunner initData(ProductRepository productRepository, AppUserRepository appUserRepository) {
+        return args -> {
+            // Create and save sample products
+            productRepository.save(new Product("Season Ball-W", "ODI Cricket Ball", 1299.99));
+            productRepository.save(new Product("Season Ball-R", "Test Cricket Ball", 1499.99));
+            productRepository.save(new Product("Season Ball-P", "Day Night Test Cricket Ball", 1499.99));
+            productRepository.save(new Product("Bat", "Kashmir Willow", 5399.99));
+            productRepository.save(new Product("Pad", "Leg Protection", 1199.99));
+            productRepository.save(new Product("Guard", "All 4 guards", 5399.99));
+            productRepository.save(new Product("Kit", "Complete Kit", 7799.99));
+
+            
+            // Create and save sample users
+            appUserRepository.save(new AppUser("Virat Kohli", "vk18@gmail.com", 36));
+            appUserRepository.save(new AppUser("Saching Tendulkar", "st10@gmail.com", 52));
+            appUserRepository.save(new AppUser("Yuvi Singh", "yuvis12@gmail.com", 43));
+            appUserRepository.save(new AppUser("Zaheer Khan", "zaheerk34@gmail.com", 46));
+            appUserRepository.save(new AppUser("R P Singh", "rpsingh9@gmail.com", 39));
+            appUserRepository.save(new AppUser("Anil Kumble", "ak37@gmail.com", 54));
+            
+            System.out.println("Sample data initialized!");
+        };
+    }
+}
