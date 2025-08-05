@@ -1,0 +1,40 @@
+package com.example.SpringBootRESTAPI.service;
+
+import com.example.SpringBootRESTAPI.entity.AppUser;
+import com.example.SpringBootRESTAPI.repository.AppUserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
+
+@Service
+public class AppUserService {
+    
+    private final AppUserRepository appUserRepository;
+    
+    @Autowired
+    public AppUserService(AppUserRepository appUserRepository) {
+        this.appUserRepository = appUserRepository;
+    }
+    
+    public List<AppUser> getAllUsers() {
+        return appUserRepository.findAll();
+    }
+    
+    public Optional<AppUser> getUserById(Long id) {
+        return appUserRepository.findById(id);
+    }
+    
+    public Optional<AppUser> getUserByEmail(String email) {
+        return appUserRepository.findByEmail(email);
+    }
+    
+    public AppUser saveUser(AppUser user) {
+        return appUserRepository.save(user);
+    }
+    
+    public void deleteUser(Long id) {
+        appUserRepository.deleteById(id);
+    }
+}
