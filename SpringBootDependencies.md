@@ -82,7 +82,7 @@ dependencies {
 
 ```java
 // Entity class
-package com.example.SpringBootDemo.entity;
+package com.example.SpringBootRESTAPI.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -154,9 +154,9 @@ public class Product {
 
 ```java
 // Repository interface
-package com.example.SpringBootDemo.repository;
+package com.example.SpringBootRESTAPI.repository;
 
-import com.example.SpringBootDemo.entity.Product;
+import com.example.SpringBootRESTAPI.entity.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -174,10 +174,10 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
 ```java
 // Service class
-package com.example.SpringBootDemo.service;
+package com.example.SpringBootRESTAPI.service;
 
-import com.example.SpringBootDemo.entity.Product;
-import com.example.SpringBootDemo.repository.ProductRepository;
+import com.example.SpringBootRESTAPI.entity.Product;
+import com.example.SpringBootRESTAPI.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -263,7 +263,7 @@ management.endpoint.health.show-details=always
 ### Code Example: Custom Health Indicator
 
 ```java
-package com.example.SpringBootDemo.actuator;
+package com.example.SpringBootRESTAPI.actuator;
 
 import org.springframework.boot.actuate.health.Health;
 import org.springframework.boot.actuate.health.HealthIndicator;
@@ -324,7 +324,7 @@ dependencies {
 
 ```java
 // Entity with validation
-package com.example.SpringBootDemo.entity;
+package com.example.SpringBootRESTAPI.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -399,10 +399,10 @@ public class AppUser {
 
 ```java
 // Controller with validation
-package com.example.SpringBootDemo.controller;
+package com.example.SpringBootRESTAPI.controller;
 
-import com.example.SpringBootDemo.entity.AppUser;
-import com.example.SpringBootDemo.service.AppUserService;
+import com.example.SpringBootRESTAPI.entity.AppUser;
+import com.example.SpringBootRESTAPI.service.AppUserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -481,7 +481,7 @@ spring.session.jdbc.table-name=SPRING_SESSION
 ### Code Example: Session Configuration
 
 ```java
-package com.example.SpringBootDemo.config;
+package com.example.SpringBootRESTAPI.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -507,7 +507,7 @@ public class SessionConfig {
 
 ```java
 // Controller using session
-package com.example.SpringBootDemo.controller;
+package com.example.SpringBootRESTAPI.controller;
 
 import jakarta.servlet.http.HttpSession;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -600,12 +600,12 @@ spring.jpa.show-sql=true
 
 ```java
 // Data initialization using CommandLineRunner
-package com.example.SpringBootDemo.config;
+package com.example.SpringBootRESTAPI.config;
 
-import com.example.SpringBootDemo.entity.AppUser;
-import com.example.SpringBootDemo.entity.Product;
-import com.example.SpringBootDemo.repository.AppUserRepository;
-import com.example.SpringBootDemo.repository.ProductRepository;
+import com.example.SpringBootRESTAPI.entity.AppUser;
+import com.example.SpringBootRESTAPI.entity.Product;
+import com.example.SpringBootRESTAPI.repository.AppUserRepository;
+import com.example.SpringBootRESTAPI.repository.ProductRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -665,10 +665,10 @@ dependencies {
 
 ```java
 // Unit test for service
-package com.example.SpringBootDemo.service;
+package com.example.SpringBootRESTAPI.service;
 
-import com.example.SpringBootDemo.entity.Product;
-import com.example.SpringBootDemo.repository.ProductRepository;
+import com.example.SpringBootRESTAPI.entity.Product;
+import com.example.SpringBootRESTAPI.repository.ProductRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -751,10 +751,10 @@ public class ProductServiceTest {
 
 ```java
 // Integration test for controller
-package com.example.SpringBootDemo.controller;
+package com.example.SpringBootRESTAPI.controller;
 
-import com.example.SpringBootDemo.entity.Product;
-import com.example.SpringBootDemo.service.ProductService;
+import com.example.SpringBootRESTAPI.entity.Product;
+import com.example.SpringBootRESTAPI.service.ProductService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
