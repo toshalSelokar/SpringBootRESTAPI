@@ -1,8 +1,8 @@
 {
 	"info": {
-		"_postman_id": "spring-boot-demo-collection",
-		"name": "SpringBootDemo API Collection",
-		"description": "Comprehensive collection for testing SpringBootDemo application endpoints including actuator, health checks, and API endpoints for Products, Users, and Session management",
+		"_postman_id": "spring-boot-rest-api-collection",
+		"name": "SpringBootREST API Collection",
+		"description": "Comprehensive collection for testing SpringBootRESTAPI application endpoints including actuator, health checks, and API endpoints for Products, Users, and Session management",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "spring-boot-demo"
 	},
