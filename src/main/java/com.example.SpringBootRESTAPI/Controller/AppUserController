@@ -1,0 +1,82 @@
+package com.example.SpringBootRESTAPI.controller;
+
+import com.example.SpringBootRESTAPI.entity.AppUser;
+import com.example.SpringBootRESTAPI.service.AppUserService;
+import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+
+@RestController
+@RequestMapping("/api/users")
+public class AppUserController {
+    
+    private final AppUserService appUserService;
+    
+    @Autowired
+    public AppUserController(AppUserService appUserService) {
+        this.appUserService = appUserService;
+    }
+    
+    @GetMapping
+    public ResponseEntity<List<AppUser>> getAllUsers() {
+        List<AppUser> users = appUserService.getAllUsers();
+        return new ResponseEntity<>(users, HttpStatus.OK);
+    }
+    
+    @GetMapping("/{id}")
+    public ResponseEntity<AppUser> getUserById(@PathVariable Long id) {
+        Optional<AppUser> user = appUserService.getUserById(id);
+        return user.map(value -> new ResponseEntity<>(value, HttpStatus.OK))
+                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+    
+    @PostMapping
+    public ResponseEntity<AppUser> createUser(@Valid @RequestBody AppUser user) {
+        AppUser savedUser = appUserService.saveUser(user);
+        return new ResponseEntity<>(savedUser, HttpStatus.CREATED);
+    }
+    
+    @PutMapping("/{id}")
+    public ResponseEntity<AppUser> updateUser(@PathVariable Long id, @Valid @RequestBody AppUser user) {
+        Optional<AppUser> existingUser = appUserService.getUserById(id);
+        if (existingUser.isPresent()) {
+            user.setId(id);
+            AppUser updatedUser = appUserService.saveUser(user);
+            return new ResponseEntity<>(updatedUser, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+    
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
+        Optional<AppUser> existingUser = appUserService.getUserById(id);
+        if (existingUser.isPresent()) {
+            appUserService.deleteUser(id);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+    
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<Map<String, String>> handleValidationExceptions(
+            MethodArgumentNotValidException ex) {
+        Map<String, String> errors = new HashMap<>();
+        ex.getBindingResult().getAllErrors().forEach((error) -> {
+            String fieldName = ((FieldError) error).getField();
+            String errorMessage = error.getDefaultMessage();
+            errors.put(fieldName, errorMessage);
+        });
+        return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
+    }
+}
