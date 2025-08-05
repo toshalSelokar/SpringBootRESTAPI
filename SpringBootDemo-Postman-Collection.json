@@ -1,0 +1,798 @@
+{
+	"info": {
+		"_postman_id": "spring-boot-demo-collection",
+		"name": "SpringBootDemo API Collection",
+		"description": "Comprehensive collection for testing SpringBootDemo application endpoints including actuator, health checks, and API endpoints for Products, Users, and Session management",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "spring-boot-demo"
+	},
+	"item": [
+		{
+			"name": "Health & Monitoring",
+			"item": [
+				{
+					"name": "Health Check",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/actuator/health",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"actuator",
+								"health"
+							]
+						},
+						"description": "Check application health status"
+					},
+					"response": []
+				},
+				{
+					"name": "Actuator Root",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/actuator",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"actuator"
+							]
+						},
+						"description": "Get all available actuator endpoints"
+					},
+					"response": []
+				},
+				{
+					"name": "Application Info",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/actuator/info",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"actuator",
+								"info"
+							]
+						},
+						"description": "Get application information"
+					},
+					"response": []
+				},
+				{
+					"name": "Environment Properties",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/actuator/env",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"actuator",
+								"env"
+							]
+						},
+						"description": "Get environment properties (may require management.endpoints.web.exposure.include=*)"
+					},
+					"response": []
+				},
+				{
+					"name": "Application Metrics",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/actuator/metrics",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"actuator",
+								"metrics"
+							]
+						},
+						"description": "Get available metrics (may require management.endpoints.web.exposure.include=*)"
+					},
+					"response": []
+				},
+				{
+					"name": "JVM Memory Metrics",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/actuator/metrics/jvm.memory.used",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"actuator",
+								"metrics",
+								"jvm.memory.used"
+							]
+						},
+						"description": "Get JVM memory usage metrics"
+					},
+					"response": []
+				},
+				{
+					"name": "HTTP Request Metrics",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/actuator/metrics/http.server.requests",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"actuator",
+								"metrics",
+								"http.server.requests"
+							]
+						},
+						"description": "Get HTTP request metrics"
+					},
+					"response": []
+				},
+				{
+					"name": "Custom Health Indicator",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/actuator/health/custom",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"actuator",
+								"health",
+								"custom"
+							]
+						},
+						"description": "Check custom health indicator status"
+					},
+					"response": []
+				}
+			],
+			"description": "Health checks and monitoring endpoints"
+		},
+		{
+			"name": "Product API",
+			"item": [
+				{
+					"name": "Get All Products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/products",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"products"
+							]
+						},
+						"description": "Get all products"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Product by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/products/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"products",
+								"1"
+							]
+						},
+						"description": "Get a product by its ID"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Product",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"New Product\",\n    \"description\": \"Product description\",\n    \"price\": 99.99\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/products",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"products"
+							]
+						},
+						"description": "Create a new product"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Product",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Updated Product\",\n    \"description\": \"Updated description\",\n    \"price\": 149.99\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/products/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"products",
+								"1"
+							]
+						},
+						"description": "Update an existing product"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Product",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/products/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"products",
+								"1"
+							]
+						},
+						"description": "Delete a product"
+					},
+					"response": []
+				},
+				{
+					"name": "Search Products by Name",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/products/search?name=Laptop",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"products",
+								"search"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Laptop"
+								}
+							]
+						},
+						"description": "Search products by name"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Products by Price",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/products/price-less-than?price=500",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"products",
+								"price-less-than"
+							],
+							"query": [
+								{
+									"key": "price",
+									"value": "500"
+								}
+							]
+						},
+						"description": "Get products with price less than specified value"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Invalid Product (Validation Test)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"\",\n    \"description\": \"Invalid product with empty name\",\n    \"price\": -10\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/products",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"products"
+							]
+						},
+						"description": "Test validation by creating an invalid product"
+					},
+					"response": []
+				}
+			],
+			"description": "Product API endpoints"
+		},
+		{
+			"name": "User API",
+			"item": [
+				{
+					"name": "Get All Users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/users",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						},
+						"description": "Get all users"
+					},
+					"response": []
+				},
+				{
+					"name": "Get User by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/users/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"1"
+							]
+						},
+						"description": "Get a user by ID"
+					},
+					"response": []
+				},
+				{
+					"name": "Create User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Alice Johnson\",\n    \"email\": \"alice@example.com\",\n    \"age\": 28\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/users",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						},
+						"description": "Create a new user"
+					},
+					"response": []
+				},
+				{
+					"name": "Update User",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Alice Smith\",\n    \"email\": \"alice.smith@example.com\",\n    \"age\": 29\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/users/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"1"
+							]
+						},
+						"description": "Update an existing user"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/users/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"1"
+							]
+						},
+						"description": "Delete a user"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Invalid User (Validation Test)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"A\",\n    \"email\": \"invalid-email\",\n    \"age\": 16\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/users",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						},
+						"description": "Test validation by creating an invalid user"
+					},
+					"response": []
+				}
+			],
+			"description": "User API endpoints"
+		},
+		{
+			"name": "Session Management",
+			"item": [
+				{
+					"name": "Set Session Attribute",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/session/set?key=username&value=john_doe",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"session",
+								"set"
+							],
+							"query": [
+								{
+									"key": "key",
+									"value": "username"
+								},
+								{
+									"key": "value",
+									"value": "john_doe"
+								}
+							]
+						},
+						"description": "Set a session attribute"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Session Attribute",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/session/get?key=username",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"session",
+								"get"
+							],
+							"query": [
+								{
+									"key": "key",
+									"value": "username"
+								}
+							]
+						},
+						"description": "Get a session attribute"
+					},
+					"response": []
+				},
+				{
+					"name": "Invalidate Session",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/session/invalidate",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"session",
+								"invalidate"
+							]
+						},
+						"description": "Invalidate the current session"
+					},
+					"response": []
+				}
+			],
+			"description": "Session management endpoints"
+		},
+		{
+			"name": "Database & H2",
+			"item": [
+				{
+					"name": "H2 Console Access",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/h2-console",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"h2-console"
+							]
+						},
+						"description": "Access H2 database console (if enabled)"
+					},
+					"response": []
+				}
+			],
+			"description": "Database related endpoints"
+		},
+		{
+			"name": "Advanced Actuator",
+			"item": [
+				{
+					"name": "Beans Information",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/actuator/beans",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"actuator",
+								"beans"
+							]
+						},
+						"description": "Get Spring beans information (requires exposure)"
+					},
+					"response": []
+				},
+				{
+					"name": "Configuration Properties",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/actuator/configprops",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"actuator",
+								"configprops"
+							]
+						},
+						"description": "Get configuration properties (requires exposure)"
+					},
+					"response": []
+				},
+				{
+					"name": "Thread Dump",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/actuator/threaddump",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"actuator",
+								"threaddump"
+							]
+						},
+						"description": "Get thread dump (requires exposure)"
+					},
+					"response": []
+				},
+				{
+					"name": "Heap Dump",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/actuator/heapdump",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"actuator",
+								"heapdump"
+							]
+						},
+						"description": "Download heap dump (requires exposure, returns binary data)"
+					},
+					"response": []
+				},
+				{
+					"name": "Loggers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/actuator/loggers",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"actuator",
+								"loggers"
+							]
+						},
+						"description": "Get logger configuration (requires exposure)"
+					},
+					"response": []
+				},
+				{
+					"name": "Shutdown Application",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/actuator/shutdown",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"actuator",
+								"shutdown"
+							]
+						},
+						"description": "Gracefully shutdown application (requires exposure and enablement)"
+					},
+					"response": []
+				}
+			],
+			"description": "Advanced actuator endpoints (may require additional configuration)"
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"// Set timestamp for requests",
+					"pm.globals.set('timestamp', new Date().toISOString());"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"// Basic response validation",
+					"pm.test('Response time is less than 5000ms', function () {",
+					"    pm.expect(pm.response.responseTime).to.be.below(5000);",
+					"});",
+					"",
+					"pm.test('Response has valid status code', function () {",
+					"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 202, 204, 400, 404, 405]);",
+					"});",
+					"",
+					"// Log response for debugging",
+					"console.log('Response Status:', pm.response.status);",
+					"console.log('Response Time:', pm.response.responseTime + 'ms');"
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8080",
+			"description": "Base URL for the Spring Boot application"
+		},
+		{
+			"key": "session_id",
+			"value": "",
+			"description": "Session ID for testing session management"
+		}
+	]
+}
